@@ -117,8 +117,8 @@
             <div class="col-sm-12 col-xs-12">
                 <div class="avatar-icon-profile text-center">
                     <br>
-                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Profile foto" type="button"
-                        data-toggle="modal" data-target="#modal-profile-foto">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Profile foto"
+                        onclick="detailfotoprofile(`https://bootdey.com/img/Content/avatar/avatar1.png`)">
                 </div>
             </div>
         </div>
@@ -133,8 +133,7 @@
         </button>
         <div class="text-center">
             <br><br>
-            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Profile foto"
-                class="profile-foto-detail">
+            <img src="" id="profile-foto-detail" alt="Profile foto" class="profile-foto-detail">
         </div>
     </div>
 </div>

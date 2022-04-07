@@ -91,6 +91,12 @@
             })
         }
 
+        // Show detail foto profile
+        function detailfotoprofile(img) {
+            $('#modal-profile-foto').modal('show')
+            $('#profile-foto-detail').prop('src', img)
+        }
+
         // Scool down message
         function scooldown(div) {
             $(div).scrollTop($('.message')[0].scrollHeight)
