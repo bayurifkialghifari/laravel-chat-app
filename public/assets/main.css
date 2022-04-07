@@ -104,6 +104,7 @@ body {
 .heading-name {
     padding: 0 !important;
     cursor: pointer;
+    margin: auto;
 }
 
 .heading-name-meta {
@@ -484,6 +485,10 @@ body {
 
     .fa-2x {
         font-size: 2.3em !important;
+    }
+
+    .heading-name {
+        padding: 10px !important;
     }
 
     .heading-avatar {
