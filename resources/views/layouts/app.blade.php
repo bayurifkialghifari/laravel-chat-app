@@ -23,6 +23,8 @@
     <script src="{{ asset('assets') }}/emoji-picker-master/js/util.js"></script>
     <script src="{{ asset('assets') }}/emoji-picker-master/js/jquery.emojiarea.js"></script>
     <script src="{{ asset('assets') }}/emoji-picker-master/js/emoji-picker.js"></script>
+    @livewireStyles
+    @livewireScripts
     @stack('css')
 </head>
 
@@ -30,7 +32,7 @@
     <div class="app">
         <div class="row app-one">
             <div class="col-sm-3 side">
-                @include('partials.side')
+                <livewire:side-bar />
             </div>
 
             <div class="col-sm-9 conversation">
