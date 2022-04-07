@@ -1,0 +1,39 @@
+.dropdown-button {
+    border: none;
+    background-color: transparent;
+    color: white;
+}
+
+.dropdown-menu {
+    background-color: #39403b;
+    left: auto;
+    right: 0 !important;
+    box-shadow: 1px 1px #232423, -0.1em 0 .1em #232423;
+}
+
+.dropdown-menu>li>a {
+    color: white;
+}
+
+.dropdown-menu>li>a:hover {
+    color: white;
+    background-color: #232423;
+}
+
+.btn-custom {
+    background-color: transparent;
+    color: white;
+}
+
+.btn-custom:hover,
+.btn-custom:focus,
+.btn-custom:active {
+    color: white;
+    outline: none !important;
+}
+
+@media screen and (max-width: 700px) {
+    .dropdown-button {
+        background-color: transparent;
+    }
+}
