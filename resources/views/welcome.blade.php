@@ -33,7 +33,7 @@
                     <div class="row heading">
                         <div class="col-sm-3 col-xs-3 heading-avatar">
                             <div class="heading-avatar-icon">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" id="my-info">
                             </div>
                         </div>
                         <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
@@ -47,8 +47,8 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-sm-2 col-xs-2 heading-compose  pull-right">
-                            <button class="dropdown-button">
+                        <div class="col-sm-2 col-xs-2 heading-compose pull-right">
+                            <button class="dropdown-button" id="archive">
                                 <i class="fa fa-archive fa-2x  pull-right" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -66,6 +66,51 @@
 
                     <div class="row sideBar">
                         <div class="row sideBar-body" onclick="chat(1)">
+                            <div class="col-sm-3 col-xs-1 sideBar-avatar">
+                                <div class="avatar-icon">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                                </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-11 sideBar-main">
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-8 sideBar-name">
+                                        <span class="name-meta">John Doe
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                        <span class="time-meta pull-right">18:18
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="side-two" id="chat-archive">
+                    <div class="row newMessage-heading">
+                        <div class="row newMessage-main">
+                            <div class="col-sm-2 col-xs-2 newMessage-back" onclick="back()">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-sm-10 col-xs-10 newMessage-title">
+                                New Chat
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row composeBox">
+                        <div class="col-sm-12 composeBox-inner">
+                            <div class="form-group has-feedback">
+                                <input id="composeText" type="text" class="form-control" name="searchText"
+                                    placeholder="Search People">
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row compose-sideBar">
+                        <div class="row sideBar-body">
                             <div class="col-sm-3 col-xs-3 sideBar-avatar">
                                 <div class="avatar-icon">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
@@ -87,14 +132,14 @@
                     </div>
                 </div>
 
-                <div class="side-two">
+                <div class="side-two" id="my-profile">
                     <div class="row newMessage-heading">
                         <div class="row newMessage-main">
-                            <div class="col-sm-2 col-xs-2 newMessage-back">
+                            <div class="col-sm-2 col-xs-2 newMessage-back" onclick="back()">
                                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
                             </div>
                             <div class="col-sm-10 col-xs-10 newMessage-title">
-                                New Chat
+                                My Profile
                             </div>
                         </div>
                     </div>
@@ -163,7 +208,8 @@
                     </div>
                 </div>
 
-                <div class="row message" id="conversation">
+                <div class="row message" id="conversation"
+                    style='background: url("{{ asset('assets') }}/bg-message-2.png") no-repeat fixed 66% 50%;background-size: 200px;background-color: #232423;'>
                     <div class="row message-previous">
                         <div class="col-sm-12 previous">
                             <a onclick="previous(this)" name="20">
@@ -268,18 +314,33 @@
             }
         }
 
-        $(function() {
-            $('.heading-compose').click(function() {
-                $('.side-two').css({
-                    'left': '0'
-                });
-            });
+        // Back to main menu function
+        function back() {
+            $('#chat-archive').css({
+                'left': '-100%',
+                'top': '-100%',
+            })
 
-            $('.newMessage-back').click(function() {
-                $('.side-two').css({
-                    'left': '-100%'
-                });
-            });
+            $('#my-profile').css({
+                'left': '-100%',
+                'top': '-100%',
+            })
+        }
+
+        $(function() {
+            $('#archive').click(function() {
+                $('#chat-archive').css({
+                    'left': '0',
+                    'top': '0',
+                })
+            })
+
+            $('#my-info').click(function() {
+                $('#my-profile').css({
+                    'left': '0',
+                    'top': '0',
+                })
+            })
 
             $('.message').scrollTop($('.message')[0].scrollHeight)
         })
