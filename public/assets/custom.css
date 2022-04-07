@@ -32,8 +32,47 @@
     outline: none !important;
 }
 
+/* My profile */
+.avatar-icon-profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    opacity: 1;
+    -webkit-transition: left 0.5s ease;
+    transition: left 0.5s ease;
+    backface-visibility: hidden;
+}
+
+.avatar-icon-profile img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    opacity: 0.3;
+    -webkit-transition: left 0.5s ease;
+    transition: left 0.5s ease;
+}
+
+.btn-close-profile-foto {
+    color: white !important;
+    font-size: 50px;
+}
+
+.profile-foto-detail {
+    width: 500px;
+    height: 500px;
+}
+
+.modal {
+    height: 100% !important;
+    overflow: hidden !important;
+}
+
 @media screen and (max-width: 700px) {
     .dropdown-button {
         background-color: transparent;
+    }
+
+    .profile-foto-detail {
+        width: 350px;
+        height: 350px;
     }
 }
