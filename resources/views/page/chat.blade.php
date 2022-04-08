@@ -76,13 +76,8 @@
                 <input type="file" name="file" style="display: none" id="file" class="form-control">
             </div>
         </div>
-        <div class="col-sm-1 col-xs-1 reply-emojis">
-            <button class="btn btn-custom btn-sm" id="btn-emoji">
-                <i class="far fa-smile fa-2x"></i>
-            </button>
-        </div>
-        <div class="col-sm-9 col-xs-9 reply-main">
-            <textarea class="form-control" rows="1" id="comment"></textarea>
+        <div class="col-sm-10 col-xs-10 reply-main">
+            <input type="text" autocomplete="off" class="form-control" id="comment" placeholder="Type your message here..." />
         </div>
         <!-- <div class="col-sm-1 col-xs-1 reply-recording"> -->
         <!-- <i class="fa fa-microphone fa-2x" aria-hidden="true"></i> -->
@@ -94,3 +89,6 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+
+@endpush
