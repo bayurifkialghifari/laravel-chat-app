@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
             $table->tinyInteger('is_active');
             $table->string('activation_code');
+            $table->rememberToken();
         });
     }
 

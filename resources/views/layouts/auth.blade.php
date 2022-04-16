@@ -1,32 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
-    <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>Whatsapp web chat template - Bootdey.com</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
-        integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('assets') }}/auth/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="{{ asset('assets') }}/auth/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('assets') }}/auth/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="{{ asset('assets') }}/auth/css/style.css">
+
+    <title>{{ env('APP_NAME') }} | {{ ucwords(request()->route()->getName()) }}</title>
     @stack('css')
 </head>
 
 <body>
-    <div class="app">
-        <div class="row">
-            <div class="col-sm-12">
-                @yield('content')
-            </div>
-        </div>
+    <div class="d-lg-flex half">
+        @yield('content')
     </div>
+
+
+
+    <script src="{{ asset('assets') }}/auth/js/jquery-3.3.1.min.js"></script>
+    <script src="{{ asset('assets') }}/auth/js/popper.min.js"></script>
+    <script src="{{ asset('assets') }}/auth/js/bootstrap.min.js"></script>
+    <script src="{{ asset('assets') }}/auth/js/main.js"></script>
     @stack('script')
 </body>
+
 </html>
