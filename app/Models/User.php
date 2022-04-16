@@ -12,6 +12,8 @@ class User extends Authenticatables
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $primaryKey = 'user_code';
+    public $incrementing = false;
     /**
      * Get the password for the user.
      *
@@ -22,12 +24,24 @@ class User extends Authenticatables
         return $this->user_password;
     }
 
+    public function getAuthIdentifierName()
+    {
+        return 'user_code';
+    }
+
+    public function getAuthIdentifier()
+    {
+        return $this->getKey();
+    }
+
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
+        'user_code',
         'user_name',
         'user_email',
         'user_password',
