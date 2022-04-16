@@ -2,7 +2,8 @@
 
 
 @section('content')
-    <div class="bg order-1 order-md-2" style="background-image: url('{{ 'assets' }}/auth/images/bg_1.jpg');"></div>
+    <div class="bg order-1 order-md-2" style="background-image: url('{{ 'assets' }}/auth/images/bg_1.jpg');">
+    </div>
     <div class="contents order-2 order-md-1">
 
         <div class="container">
@@ -11,29 +12,33 @@
                     <div class="mb-4">
                         <h3>Sign In</h3>
                         <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
-                            adipisicing.</p>
+                            adipisicing. @if (Auth::guest())
+                                do this
+                            @else
+                                do that
+                            @endif
+                        </p>
                     </div>
-                    <form method="POST" action="{{ route('login') }}" id="ggwp">
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group first">
                             <label for="username">Username</label>
                             <input type="email" name="user_email" class="form-control" id="username">
-
-                            @error('user_email')
-                                <h1>
-                                    <strong>{{ $message }}</strong>
-                                </h1>
-                            @enderror
                         </div>
+                        @error('user_email')
+                            <p class="text-danger">
+                                <strong>{{ $message }}</strong>
+                            </p>
+                        @enderror
                         <div class="form-group last mb-3">
                             <label for="password">Password</label>
                             <input type="password" name="password" class="form-control" id="password">
 
                         </div>
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
+                            <p class="text-danger">
                                 <strong>{{ $message }}</strong>
-                            </span>
+                            </p>
                         @enderror
 
                         <div class="d-flex mb-5 align-items-center">
@@ -68,22 +73,3 @@
         </div>
     </div>
 @endsection
-
-@push('script')
-    <script>
-        $(() => {
-            $('#ggwp').submit((ev) => {
-                ev.preventDefault()
-
-                $.ajax({
-                    method: 'post',
-                    data: $('#ggwp').serialize(),
-                    url: '{{ route('login') }}',
-                    success: (res) => {
-                        console.log(res)
-                    }
-                })
-            })
-        })
-    </script>
-@endpush
