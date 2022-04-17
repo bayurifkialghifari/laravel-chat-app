@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -50,10 +51,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'user_name' => ['required', 'string', 'max:255'],
-            'user_phone' => ['required', 'string', 'max:15', 'min:10'],
+            'username' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:15'],
             'user_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'user_password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -66,12 +67,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $activation_code = Str::random(50);
+
         $user = User::create([
-            'user_name' => $data['name'],
+            'user_code' => Str::orderedUuid(),
+            'user_name' => $data['username'],
+            'user_nickname' => $data['username'],
             'user_phone' => $data['phone'],
-            'user_email' => $data['email'],
+            'user_email' => $data['user_email'],
             'user_password' => Hash::make($data['password']),
+            'user_bio' => 'Hello World',
+            'user_profile' => '',
+            'is_active' => 0,
+            'activation_code' => $activation_code,
         ]);
+
+        // Encrypt the activation code and send it to the user
+        $activation_code = md5($activation_code);
 
         return $user;
     }

@@ -11,19 +11,14 @@
                 <div class="col-md-7">
                     <div class="mb-4">
                         <h3>Sign In</h3>
-                        <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur
-                            adipisicing. @if (Auth::guest())
-                                do this
-                            @else
-                                do that
-                            @endif
+                        <p class="mb-4">You must login to continue.
                         </p>
                     </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group first">
-                            <label for="username">Username</label>
-                            <input type="email" name="user_email" class="form-control" id="username">
+                            <label for="email">Email</label>
+                            <input type="email" name="user_email" class="form-control" id="email">
                         </div>
                         @error('user_email')
                             <p class="text-danger">
@@ -54,10 +49,14 @@
 
                         <input type="submit" value="Log In" class="btn btn-block btn-primary">
 
-                        {{-- <span class="d-block text-center my-4 text-muted">&mdash; or &mdash;</span> --}}
+                        <span class="d-block text-center my-4 text-muted">&mdash; or &mdash;</span>
 
-                        {{-- <div class="social-login">
-                            <a href="#" class="facebook btn d-flex justify-content-center align-items-center">
+                        <div class="social-login">
+                            <a href="{{ route('register') }}"
+                                class="google btn d-flex justify-content-center align-items-center">
+                                <span class="icon-user mr-3"></span> Create New Account
+                            </a>
+                            {{-- <a href="#" class="facebook btn d-flex justify-content-center align-items-center">
                                 <span class="icon-facebook mr-3"></span> Login with Facebook
                             </a>
                             <a href="#" class="twitter btn d-flex justify-content-center align-items-center">
@@ -65,8 +64,8 @@
                             </a>
                             <a href="#" class="google btn d-flex justify-content-center align-items-center">
                                 <span class="icon-google mr-3"></span> Login with Google
-                            </a>
-                        </div> --}}
+                            </a> --}}
+                        </div>
                     </form>
                 </div>
             </div>
