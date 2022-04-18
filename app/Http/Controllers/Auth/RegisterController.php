@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -52,7 +52,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'username' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:15'],
+            'user_phone' => ['required', 'string', 'max:15', 'unique:users'],
             'user_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'user_code' => Str::orderedUuid(),
             'user_name' => $data['username'],
             'user_nickname' => $data['username'],
-            'user_phone' => $data['phone'],
+            'user_phone' => $data['user_phone'],
             'user_email' => $data['user_email'],
             'user_password' => Hash::make($data['password']),
             'user_bio' => 'Hello World',
@@ -84,6 +84,9 @@ class RegisterController extends Controller
 
         // Encrypt the activation code and send it to the user
         $activation_code = md5($activation_code);
+
+        // Flass message
+        session()->flash('msg_register', 'Congratulations, your account registration was successful! <br> Please check your email to verify your account');
 
         return $user;
     }

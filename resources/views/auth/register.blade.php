@@ -1,16 +1,13 @@
 @extends('layouts.auth')
 
 @section('content')
-    <div class="bg order-2 order-md-1" style="background-image: url('{{ 'assets' }}/auth/images/bg_1.jpg');">
-    </div>
-    <div class="contents order-1 order-md-2">
+    <div class="contents order-2 order-md-2">
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-7">
                     <div class="mb-4">
                         <h3>Sign Up</h3>
-                        <p class="mb-4">Join us today.
-                        </p>
+                        <p class="mb-4">Join us today.</p>
                     </div>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -27,11 +24,11 @@
                         @enderror
 
                         <div class="form-group last mb-3">
-                            <label for="phone">Phone</label>
-                            <input type="number" name="phone" class="form-control" id="phone">
+                            <label for="user_phone">Phone</label>
+                            <input type="number" name="user_phone" class="form-control" id="user_phone">
 
                         </div>
-                        @error('phone')
+                        @error('user_phone')
                             <p class="text-danger">
                                 <strong>{{ $message }}</strong>
                             </p>
@@ -71,11 +68,11 @@
                         <span class="d-block text-center my-4 text-muted">&mdash; or &mdash;</span>
 
                         <div class="social-login">
-                            <p> Already have an account ?</p>
-                            <a href="{{ route('login') }}"
-                                class="btn btn-block btn-primary d-flex justify-content-center align-items-center">
-                                <span class="icon-user mr-3"></span> Login
-                            </a>
+                            <p>
+                                Already have an account ?
+                                <span onclick="window.location.href='{{ route('login') }}'" class="text-primary"
+                                    style="cursor: pointer">Login</span>
+                            </p>
                             {{-- <a href="#" class="facebook btn d-flex justify-content-center align-items-center">
                             <span class="icon-facebook mr-3"></span> Login with Facebook
                         </a>
@@ -90,5 +87,7 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="bg order-1 order-md-1" style="background-image: url('{{ 'assets' }}/auth/images/bg_1.jpg');">
     </div>
 @endsection

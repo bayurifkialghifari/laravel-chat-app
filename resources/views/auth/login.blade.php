@@ -2,8 +2,6 @@
 
 
 @section('content')
-    <div class="bg order-1 order-md-2" style="background-image: url('{{ 'assets' }}/auth/images/bg_1.jpg');">
-    </div>
     <div class="contents order-2 order-md-1">
 
         <div class="container">
@@ -11,8 +9,18 @@
                 <div class="col-md-7">
                     <div class="mb-4">
                         <h3>Sign In</h3>
-                        <p class="mb-4">You must login to continue.
-                        </p>
+                        <p class="mb-4">You must login to continue.</p>
+                        @if (session('msg'))
+                            <p class="text-danger">
+                                {{ session('msg') }}
+                            </p>
+                        @endif
+
+                        @if (session('msg_register'))
+                            <p class="text-success">
+                                {!! session('msg_register') !!}
+                            </p>
+                        @endif
                     </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -70,5 +78,7 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="bg order-1 order-md-2" style="background-image: url('{{ 'assets' }}/auth/images/bg_1.jpg');">
     </div>
 @endsection
