@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserRegister;
 
 class RegisterController extends Controller
 {
@@ -84,6 +86,9 @@ class RegisterController extends Controller
 
         // Encrypt the activation code and send it to the user
         $activation_code = md5($activation_code);
+
+        // Send confirmation email to the user
+        Mail::to($data['user_email'])->send(new UserRegister($activation_code, $user->user_code));
 
         // Flass message
         session()->flash('msg_register', 'Congratulations, your account registration was successful! <br> Please check your email to verify your account');

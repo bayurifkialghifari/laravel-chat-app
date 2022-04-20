@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+Auth::routes([
+    'verify' => false,
+]);
 
 Route::group(['middleware' => ['auth'], 'namespace' => 'App\\Http\\Controllers'], function () {
     Route::get('/', 'ChatController@index');
