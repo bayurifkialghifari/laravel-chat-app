@@ -90,9 +90,50 @@ class RegisterController extends Controller
         // Send confirmation email to the user
         Mail::to($data['user_email'])->send(new UserRegister($activation_code, $user->user_code));
 
-        // Flass message
+        // Flash message
         session()->flash('msg_register', 'Congratulations, your account registration was successful! <br> Please check your email to verify your account');
 
         return $user;
+    }
+
+    /**
+     * Activate the user account
+     *
+     * @param  string  $code
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function verifyAccount($code, $id)
+    {
+        // Find the user
+        $user = User::find($id);
+
+        // Check if the user exists
+        if ($user) {
+            // Check code is valid
+            if ($code == md5($user->activation_code)) {
+
+                // Activate the user
+                $user->is_active = 1;
+                $user->save();
+
+                // Flash message
+                session()->flash('msg_register', 'Congratulations, your account is activated! <br> You can now login to your account');
+
+                return redirect('/login');
+            } else {
+
+                // Flash message
+                session()->flash('msg', 'Your acctivation code is invalid');
+
+                return redirect('/login');
+            }
+        } else {
+
+            // Flash message
+            session()->flash('msg', 'User not found');
+
+            return redirect('/login');
+        }
     }
 }

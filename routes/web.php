@@ -21,3 +21,8 @@ Auth::routes([
 Route::group(['middleware' => ['auth'], 'namespace' => 'App\\Http\\Controllers'], function () {
     Route::get('/', 'ChatController@index');
 });
+
+// Login not required
+Route::group(['namespace' => 'App\\Http\\Controllers'], function () {
+    Route::get('/account/verify/{code}/{id}', 'Auth\RegisterController@verifyAccount');
+});
