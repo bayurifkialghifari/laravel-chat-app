@@ -25,5 +25,6 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'App\\Http\\Livewire'], f
 
 // Login not required
 Route::group(['namespace' => 'App\\Http\\Controllers'], function () {
-    Route::get('/account/verify/{code}/{id}', 'Auth\RegisterController@verifyAccount');
+    Route::post('/resend/email_confirmation', 'Auth\RegisterController@resendEmailConfirmation')->name('auth.resend_email_confirmation');
+    Route::get('/account/verify/{code}/{id}', 'Auth\RegisterController@verifyAccount')->name('auth.account_verify');
 });

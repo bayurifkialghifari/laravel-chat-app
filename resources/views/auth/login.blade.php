@@ -10,10 +10,17 @@
                     <div class="mb-4">
                         <h3>Sign In</h3>
                         <p class="mb-4">You must login to continue.</p>
-                        @if (session('msg'))
+
+                        @if (session('msg_inactive'))
                             <p class="text-danger">
-                                {{ session('msg') }}
+                                {{ session('msg_inactive') }}
                             </p>
+                            {{-- Re send email confirmation  --}}
+                            <form action="{{ route('auth.resend_email_confirmation') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="email" value="{{ session('email') }}">
+                                <button type="submit" class="btn btn-danger btn-sm">Resend Email</button>
+                            </form>
                         @endif
 
                         @if (session('msg_register'))
@@ -51,7 +58,7 @@
                                 <div class="control__indicator"></div>
                             </label>
                             <span class="ml-auto">
-                                <a href="{{ route('password.request') }}" class="forgot-pass">Forgot Password</a>
+                                <a href="" class="forgot-pass">Forgot Password</a>
                             </span>
                         </div>
 
@@ -64,15 +71,6 @@
                                 class="google btn d-flex justify-content-center align-items-center">
                                 <span class="icon-user mr-3"></span> Create New Account
                             </a>
-                            {{-- <a href="#" class="facebook btn d-flex justify-content-center align-items-center">
-                                <span class="icon-facebook mr-3"></span> Login with Facebook
-                            </a>
-                            <a href="#" class="twitter btn d-flex justify-content-center align-items-center">
-                                <span class="icon-twitter mr-3"></span> Login with Twitter
-                            </a>
-                            <a href="#" class="google btn d-flex justify-content-center align-items-center">
-                                <span class="icon-google mr-3"></span> Login with Google
-                            </a> --}}
                         </div>
                     </form>
                 </div>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -44,15 +43,18 @@ class LoginController extends Controller
         return 'user_email';
     }
 
-    protected function authenticated(Request $request, $user)
+    protected function authenticated($user)
     {
-        if ($user->is_active == 0) {
+        if ($user->is_active) return redirect($this->redirectTo)->with('msg', 'Login success !');
 
-            Auth::logout();
+        // User Email
+        $email = $user->user_email;
 
-            return redirect()->back()->with('msg', 'This account is still not active, please check your email to activate this account !');
-        }
+        Auth::logout();
 
-        return redirect($this->redirectTo)->with('msg', 'Login success !');
+        return redirect()->back()->with([
+            'msg_inactive' => 'This account is still not active, please check your email to activate this account !',
+            'email' => $email,
+        ]);
     }
 }

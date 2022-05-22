@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserRegister;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -96,13 +97,29 @@ class RegisterController extends Controller
         return $user;
     }
 
-    /**
-     * Activate the user account
-     *
-     * @param  string  $code
-     * @param  string  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function resendEmailConfirmation(Request $request)
+    {
+        $email = $request->post('email');
+
+        // Get user detail
+        $user = User::where('user_email', $email)->first();
+
+        // Generate new activation_code
+        $activation_code = Str::random(50);
+
+        // Update activation code
+        $user->activation_code = $activation_code;
+        $user->save();
+
+        // Encrypt the activation code and send it to the user
+        $activation_code = md5($activation_code);
+
+        // Send confirmation email to the user
+        Mail::to($email)->send(new UserRegister($activation_code, $user->user_code));
+
+        return redirect()->back()->with('msg_register', 'Your confirmation email has been sent !!');
+    }
+
     public function verifyAccount($code, $id)
     {
         // Find the user
