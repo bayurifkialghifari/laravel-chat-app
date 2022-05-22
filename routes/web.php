@@ -18,8 +18,8 @@ Auth::routes([
     'verify' => false,
 ]);
 
-Route::group(['middleware' => ['auth'], 'namespace' => 'App\\Http\\Controllers'], function () {
-    Route::get('/', 'ChatController@index');
+Route::group(['middleware' => ['auth'], 'namespace' => 'App\\Http\\Livewire'], function () {
+    Route::get('/', 'Chat');
 });
 
 // Login not required

@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('content')
+<div>
     <div class="row heading">
         <div class="col-sm-1 col-xs-1 heading-dot" id="backward">
             <button class="dropdown-button" onclick="chat(0)">
@@ -88,7 +87,7 @@
             </button>
         </div>
     </div>
-@endsection
+</div>
 @push('scripts')
 
 @endpush

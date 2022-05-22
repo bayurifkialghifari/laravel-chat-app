@@ -32,7 +32,7 @@
             </div>
 
             <div class="col-sm-9 conversation">
-                @yield('content')
+                {{ $slot ?? '' }}
             </div>
         </div>
     </div>
