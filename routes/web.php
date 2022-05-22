@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes([
     'verify' => false,
+    'reset' => false,
 ]);
 
 Route::group(['middleware' => ['auth'], 'namespace' => 'App\\Http\\Livewire'], function () {
